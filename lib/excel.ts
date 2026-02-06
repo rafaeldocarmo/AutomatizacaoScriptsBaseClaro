@@ -56,13 +56,13 @@ export function parseExcelFromBuffer(buffer: ArrayBuffer): DefeitoRow[] {
   });
 
   return raw.map((row) => {
-    const out = {} as DefeitoRow;
+    const out: Record<string, unknown> = {};
     for (const key of INSERT_COLUMNS) {
-      (out as Record<string, unknown>)[key] =
+      out[key] =
         key === "ID"
           ? getCellId(row, COLUMN_ALIASES[key])
           : getCell(row, COLUMN_ALIASES[key]);
     }
-    return out;
+    return out as DefeitoRow;
   });
 }
