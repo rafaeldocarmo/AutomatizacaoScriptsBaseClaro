@@ -63,6 +63,6 @@ export function parseExcelFromBuffer(buffer: ArrayBuffer): DefeitoRow[] {
           ? getCellId(row, COLUMN_ALIASES[key])
           : getCell(row, COLUMN_ALIASES[key]);
     }
-    return out as DefeitoRow;
+    return out as unknown as DefeitoRow;
   });
 }
